@@ -1,6 +1,7 @@
 import { currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
 import Link from "next/link";
+import SignoutButton from "./SignoutButton";
 
 const menuItems = [
   {
@@ -107,12 +108,12 @@ const menuItems = [
         href: "/settings",
         visible: ["admin", "teacher", "student", "parent"],
       },
-      {
-        icon: "/logout.png",
-        label: "Logout",
-        href: "/logout",
-        visible: ["admin", "teacher", "student", "parent"],
-      },
+      // {
+      //   icon: "/logout.png",
+      //   label: "Logout",
+      //   href: "/logout",
+      //   visible: ["admin", "teacher", "student", "parent"],
+      // },
     ],
   },
 ];
@@ -143,6 +144,8 @@ const Menu = async () => {
           })}
         </div>
       ))}
+      
+      <SignoutButton />
     </div>
   );
 };

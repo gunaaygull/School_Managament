@@ -9,12 +9,14 @@ import { useEffect } from "react";
 
 const LoginPage = () => {
   const { isLoaded, isSignedIn, user } = useUser();
-
   const router = useRouter();
 
   useEffect(() => {
     const role = user?.publicMetadata.role;
 
+    console.log("====================================");
+    console.log("role", role);
+    console.log("====================================");
     if (role) {
       router.push(`/${role}`);
     }

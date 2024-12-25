@@ -2,11 +2,13 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const TableSearch = () => {
   const router = useRouter();
-
+  const [isLoading, setIsLoading] = useState(false);
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    setIsLoading(true);
     e.preventDefault();
 
     const value = (e.currentTarget[0] as HTMLInputElement).value;
@@ -14,6 +16,8 @@ const TableSearch = () => {
     const params = new URLSearchParams(window.location.search);
     params.set("search", value);
     router.push(`${window.location.pathname}?${params}`);
+
+    setIsLoading(false);
   };
 
   return (
@@ -26,6 +30,7 @@ const TableSearch = () => {
         type="text"
         placeholder="Search..."
         className="w-[200px] p-2 bg-transparent outline-none"
+        disabled={isLoading}
       />
     </form>
   );

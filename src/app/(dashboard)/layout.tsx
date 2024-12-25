@@ -1,13 +1,25 @@
 import Menu from "@/components/Menu";
 import Navbar from "@/components/Navbar";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = await currentUser();
+
+  console.log("====================================");
+  console.log("user", user);
+  console.log("====================================");
+
+  if (!user) {
+    redirect("/");
+  }
+
   return (
     <div className="h-screen flex">
       {/* LEFT */}
